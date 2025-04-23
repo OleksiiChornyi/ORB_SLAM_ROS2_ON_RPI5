@@ -1,4 +1,4 @@
-# ORB_SLAM_ROS2_ON_RPI5
+# ORB SLAM3 and ROS2 ON RPI5
 How install ORB_SLAM3 and ROS2 on Raspberry Pi 5 with Debian Bookworm OS
 
 Clone this repository and run install_sisual_slam.sh
