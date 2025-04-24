@@ -24,9 +24,16 @@ echo "deb http://repo.ros2.org/ubuntu/main bookworm main" | sudo tee /etc/apt/so
 sudo apt update
 
 echo "[4/25] Installing additional ROS tools..."
-sudo apt install -y python3-pip python3-setuptools python3-colour python3-rosdep python3-ament-package
+sudo apt install -y python3-pip python3-setuptools python3-colour python3-ament-package
 
 echo "[5/25] Fixing potential dpkg problems with rospkg..." # MAY BE ERROR
+sudo dpkg --purge --force-all python3-catkin-pkg python3-catkin-pkg-modules python3-rospkg python3-rospkg-modules python3-rosdistro python3-rosdistro-modules python3-rosdep python3-rosdep-modules
+sudo rm -rf /usr/lib/python3/dist-packages/catkin_pkg
+sudo rm -rf /usr/lib/python3/dist-packages/rospkg
+sudo rm -rf /usr/lib/python3/dist-packages/rosdistro
+sudo rm -rf /usr/lib/python3/dist-packages/rosdep2
+sudo apt clean
+sudo apt update
 sudo dpkg --remove --force-all python3-catkin-pkg
 sudo dpkg --remove --force-remove-reinstreq python3-rospkg python3-rosdistro
 sudo apt -y --fix-broken install
