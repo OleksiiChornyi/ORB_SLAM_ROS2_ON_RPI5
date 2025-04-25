@@ -92,7 +92,7 @@ sudo apt update
 sudo apt install -y python3-rosdep
 rosdep install --from-paths src --ignore-src -r -y
 sudo apt -y remove libcv-bridge-dev
-sudo apt autoremove
+sudo apt autoremove -y
 
 echo "[14/25] Cloning and building Pangolin..."
 cd ~
