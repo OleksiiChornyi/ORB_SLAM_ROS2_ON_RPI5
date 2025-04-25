@@ -85,6 +85,7 @@ cd vision_opencv/cv_bridge
 git checkout humble
 
 echo "[13/25] Building my_ros2_workspace..."
+source ~/.bashrc
 cd ~/my_ros2_workspace
 colcon build --symlink-install
 source ~/my_ros2_workspace/install/local_setup.sh
