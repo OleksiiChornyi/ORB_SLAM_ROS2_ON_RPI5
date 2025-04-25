@@ -176,19 +176,31 @@ else
   git clone https://github.com/ozandmrz/orb_slam3_ros2_mono_publisher.git
 fi
 echo "[22/25] Installing dependencies for orbslam3_pose..."
+source ~/ros2_pose/install/setup.bash
+source ~/ros2_humble/install/local_setup.bash
+export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3:~/ORB_SLAM3/Thirdparty/DBoW2:~/ORB_SLAM3/Thirdparty/g2o:~/ORB_SLAM3/Thirdparty/Sophus
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/lib:~/ORB_SLAM3/Thirdparty/DBoW2/lib:~/ORB_SLAM3/Thirdparty/g2o/lib:/usr/local/lib
 cd ~/ros2_pose
 rosdep install --from-paths src --ignore-src -r -y
 colcon build --symlink-install
 
 echo "[23/25] Updating .bashrc with environment variables..."
-grep -qxF "source ~/ros2_pose/install/setup.bash" ~/.bashrc || echo "source ~/ros2_pose/install/setup.bash" >> ~/.bashrc
-source ~/.bashrc
-grep -qxF 'export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3:~/ORB_SLAM3/Thirdparty/Sophus' ~/.bashrc || echo 'export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3:~/ORB_SLAM3/Thirdparty/Sophus' >> ~/.bashrc
-grep -qxF "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/lib" ~/.bashrc || echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/lib" >> ~/.bashrc
-grep -qxF "source ~/ros2_humble/install/local_setup.bash" ~/.bashrc || echo "source ~/ros2_humble/install/local_setup.bash" >> ~/.bashrc
-grep -qxF "export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3/Thirdparty/DBoW2:~/ORB_SLAM3/Thirdparty/g2o" ~/.bashrc || echo "export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3/Thirdparty/DBoW2:~/ORB_SLAM3/Thirdparty/g2o" >> ~/.bashrc
-grep -qxF "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/Thirdparty/DBoW2/lib:~/ORB_SLAM3/Thirdparty/g2o/lib" ~/.bashrc || echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/Thirdparty/DBoW2/lib:~/ORB_SLAM3/Thirdparty/g2o/lib" >> ~/.bashrc
-grep -qxF "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" ~/.bashrc || echo "export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib" >> ~/.bashrc
+grep -qxF 'export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3:~/ORB_SLAM3/Thirdparty/Sophus' ~/.bashrc || \
+echo 'export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3:~/ORB_SLAM3/Thirdparty/Sophus' >> ~/.bashrc
+grep -qxF 'export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3/Thirdparty/DBoW2:~/ORB_SLAM3/Thirdparty/g2o' ~/.bashrc || \
+echo 'export CMAKE_PREFIX_PATH=$CMAKE_PREFIX_PATH:~/ORB_SLAM3/Thirdparty/DBoW2:~/ORB_SLAM3/Thirdparty/g2o' >> ~/.bashrc
+grep -qxF 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/lib' ~/.bashrc || \
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/lib' >> ~/.bashrc
+grep -qxF 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/Thirdparty/DBoW2/lib:~/ORB_SLAM3/Thirdparty/g2o/lib' ~/.bashrc || \
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:~/ORB_SLAM3/Thirdparty/DBoW2/lib:~/ORB_SLAM3/Thirdparty/g2o/lib' >> ~/.bashrc
+grep -qxF 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' ~/.bashrc || \
+echo 'export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib' >> ~/.bashrc
+grep -qxF 'source ~/ros2_humble/install/local_setup.bash' ~/.bashrc || \
+echo 'source ~/ros2_humble/install/local_setup.bash' >> ~/.bashrc
+grep -qxF 'source ~/ros2_pose/install/setup.bash' ~/.bashrc || \
+echo 'source ~/ros2_pose/install/setup.bash' >> ~/.bashrc
+grep -qxF 'source ~/image_publisher/install/setup.bash' ~/.bashrc || \
+echo 'source ~/image_publisher/install/setup.bash' >> ~/.bashrc
 source ~/.bashrc
 
 echo "[24/25] Cloning and building image_publisher..."
